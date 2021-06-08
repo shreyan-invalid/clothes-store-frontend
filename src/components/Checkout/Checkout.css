@@ -1,0 +1,43 @@
+.checkout{
+    display: flex;
+    padding: 20px;
+    
+    height: max-content;
+    justify-content: space-between;
+}
+
+
+
+.checkout__title{
+    
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.993);
+    color: maroon;
+}
+
+@media screen and (max-width: 960px) {
+    .checkout{
+        flex-direction: column;
+    }
+
+    .checkout__right{
+        align-items: center;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+   
+}
+
+:root {
+    --primaryColor: #ffffff;
+    --mainWhite: #fff;
+    --offWhite: #f7f7f7;
+    --mainBlack: rgb(0, 0, 0);
+    --mainGrey: #ececec;
+    --darkGrey: #4d0000d3;
+    --mainTransition: all 0.3s linear;
+    --mainSpacing: 3px;
+    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  }

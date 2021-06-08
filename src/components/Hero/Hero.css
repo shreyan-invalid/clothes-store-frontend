@@ -1,0 +1,13 @@
+.defaultHero,
+.roomsHero {
+  min-height: calc(100vh - 66px);
+  background: url("https://wallpaperaccess.com/full/1496231.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.roomsHero {
+  background-image: url("https://i.pinimg.com/originals/e5/e5/40/e5e54018daa8ba88d7f96fc942cd333f.jpg");
+  min-height: 60vh;
+}
+
