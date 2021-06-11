@@ -16,6 +16,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import Orders from './components/Orders/Orders';
 import NewHeader from './components/NewHeader/NewHeader';
 import Error from './components/Error/Error';
+import Success from './components/Success/Success';
 
 
 
@@ -59,6 +60,10 @@ function App() {
     <div className="app">
       <Router>
         <Switch>
+        <Route path="/success">
+          <NewHeader/>
+          <Success/>
+        </Route>
         <Route path="/orders">
         <NewHeader/>
             <Orders/>

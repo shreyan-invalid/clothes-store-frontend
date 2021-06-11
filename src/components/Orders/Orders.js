@@ -6,6 +6,12 @@ import Order from '../Order/Order';
 import Hero from '../Hero/Hero';
 import Banner from '../Banner/Banner';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import apiSecretKey from '../../config';
+import moment from 'moment';
+const stripeApi= require('stripe')(apiSecretKey);
+
+
 
 function Orders() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -20,9 +26,9 @@ function Orders() {
         setmmt(1);
         db
         .collection('users')
-        .doc(user?.uid)
+        .doc(user?.email)
         .collection('orders')
-        .orderBy('created', 'desc')
+        .orderBy('timestamp', 'desc')
         .onSnapshot(snapshot => (
             setOrders(snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -33,6 +39,8 @@ function Orders() {
         if(!orders.length> 0){
             setmmt(2);
         }
+
+        
         
         
     } else {

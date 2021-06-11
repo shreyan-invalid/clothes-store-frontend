@@ -3,11 +3,12 @@ import "./SubtotalCheckout.css";
 import CurrencyFormat from "react-currency-format";
 import {useStateValue} from '../../StateProvider';
 import { getBasketTotal } from "../../Reducer";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import {useStripe} from '@stripe/react-stripe-js';
 import axios from "axios";
 import { PostAdd } from "@material-ui/icons";
 import {fetchFromAPI} from '../config';
+import { indigo } from "@material-ui/core/colors";
 
 
 
@@ -39,16 +40,24 @@ function SubtotalCheckout() {
   const handleCheckout2= async(e) => {
     e.preventDefault();
 
-    const checkoutSession= await axios.post('http://localhost:4000/create-checkout-session', {
-      line_items: basket,
-      customer_email: user.email
-    })
+    if(basket.length> 0 && user){
+      const checkoutSession= await axios.post('http://localhost:4000/create-checkout-session', {
+        line_items: basket,
+        customer_email: user.email
+      })
+  
+      const result= await stripe.redirectToCheckout({
+        sessionId: checkoutSession.data.id
+      })
+  
+      if(result.error) alert(result.error.message);
+    }else if(!user){
+      history.push('/login');
+    }else{
+      alert("Please add something to the basket!")
+    }
 
-    const result= await stripe.redirectToCheckout({
-      sessionId: checkoutSession.data.id
-    })
-
-    if(result.error) alert(result.error.message);
+    
   };
 
   

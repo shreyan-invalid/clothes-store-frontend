@@ -2,6 +2,7 @@ import React from 'react';
 import "./CheckoutProduct.css";
 import {useStateValue} from '../../StateProvider';
 import FlipMove from 'react-flip-move';
+import image_not_available_lg from '../../images/image_not_available_lg.jpg'
 
 
 function CheckoutProduct({title, image, price, rating, id, hideButton}) {
@@ -18,7 +19,7 @@ function CheckoutProduct({title, image, price, rating, id, hideButton}) {
     
     return (
         <div className="checkoutProduct">
-            <img className="checkoutProduct__image" src={image} alt=""/>
+            <img className="checkoutProduct__image" src={image? image: image_not_available_lg}/>
 
             <div className="checkoutProduct__info">
                 <p className="checkoutProduct__title">{title}</p>

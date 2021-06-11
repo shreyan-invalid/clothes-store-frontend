@@ -6,22 +6,24 @@ import CurrencyFormat from 'react-currency-format';
 import moment from 'moment';
 
 function Order({order}) {
+    console.log(order);
     return (
         <div className="order">
             <h2>Order</h2>
             {console.log(order)}
-            <p>{moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}</p>
+            <p>{moment.unix(order.data.timestamp).format("MMMM Do YYYY, h:mma")}</p>
             <p className="order__id">
                 <small>Successful</small>
             </p>
             {
-                order.data.basket?.map(item => (
+                order.data.items?.map(item => (
                     <CheckoutProduct
                         id={item.id}
-                        title={item.title}
+                        title={item.description}
                         image={item.image}
-                        price={item.price}
+                        price={item.amount_total}
                         rating={item.rating}
+                        key={item.id}
                         hideButton
                     />
                 ))
